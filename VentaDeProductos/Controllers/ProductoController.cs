@@ -57,16 +57,28 @@ namespace VentaDeProductos.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NombreProducto,SubCategoriaId,Precio,Descripcion,Descuento,ImagenPortada")] Producto producto)
+        public async Task<IActionResult> Create([Bind("Id,NombreProducto,SubCategoriaId,Precio,Descripcion,Descuento")] Producto producto, IFormFileCollection Imagenes)
         {
             if (ModelState.IsValid)
             {
+                if(Imagenes.Count > 0) {
+
+                    await SubirImagenes(Imagenes);
+                }
+
+
                 _context.Add(producto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["SubCategoriaId"] = new SelectList(_context.SubCategorias, "Id", "Nombre", producto.SubCategoriaId);
             return View(producto);
+        }
+
+        //Accion que copia las imagenes a una carpeta y sube los paths de las imagenes a la tabla ProductoImagenes
+        private async Task SubirImagenes(IFormFileCollection Imagenes) {
+
+            //codigo que copia las imagenes a una carpeta y luego sube los paths a la db
         }
 
         // GET: Producto/Edit/5

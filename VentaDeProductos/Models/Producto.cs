@@ -19,7 +19,7 @@ namespace VentaDeProductos.Models
 		public string? Descripcion { get; set; }
 
 		public int? Descuento { get; set; }
-		[Required]
+
 		public string? ImagenPortada { get; set; }
 	}
 }
