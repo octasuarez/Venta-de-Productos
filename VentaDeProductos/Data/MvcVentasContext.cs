@@ -18,5 +18,6 @@ namespace MvcVentas.Data
         public DbSet<VentaDeProductos.Models.Producto> Productos { get; set; } = default!;
         public DbSet<VentaDeProductos.Models.Categoria> Categorias { get; set; } = default!;
         public DbSet<VentaDeProductos.Models.SubCategoria> SubCategorias { get; set; } = default!;
+        public DbSet<VentaDeProductos.Models.ProductoImagen> ProductoImagenes  { get; set; } = default!;
     }
 }

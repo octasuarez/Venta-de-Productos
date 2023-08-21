@@ -10,17 +10,17 @@ namespace VentaDeProductos.Models
 		[Required]
 		public string? NombreProducto { get; set; }
 
-        public int SubCategoriaId { get; set; }
-        public virtual SubCategoria? SubCategoria { get; set; }
+		public int SubCategoriaId { get; set; }
+		public virtual SubCategoria? SubCategoria { get; set; }
 
-        [Required]
+		[Required]
 		public decimal Precio { get; set; }
 		[Required]
 		public string? Descripcion { get; set; }
 
 		public int? Descuento { get; set; }
 
-		public string? ImagenPortada { get; set; }
+		public virtual ICollection<ProductoImagen>? Imagenes {get;set;}
 	}
 }
 

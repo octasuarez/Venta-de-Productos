@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcVentas.Data;
 
@@ -10,9 +11,11 @@ using MvcVentas.Data;
 namespace VentaDeProductos.Migrations
 {
     [DbContext(typeof(MvcVentasContext))]
-    partial class MvcVentasContextModelSnapshot : ModelSnapshot
+    [Migration("20230821112535_ImagenesProducto")]
+    partial class ImagenesProducto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
@@ -92,7 +95,7 @@ namespace VentaDeProductos.Migrations
 
                     b.HasIndex("ProductoId");
 
-                    b.ToTable("ProductoImagenes");
+                    b.ToTable("ProductoImagen");
                 });
 
             modelBuilder.Entity("VentaDeProductos.Models.SubCategoria", b =>

@@ -8,12 +8,21 @@
     <p>Nuestros Productos</p>
 </div>
 
-@foreach(Producto p in Model) {
+@foreach (Producto p in Model)
+{
 
-        <div>
-            <p>@p.NombreProducto</p>
-            <p>@p.Descripcion</p>
-            <p>@p.Precio</p>
-        </div>
-    }
+    <div>
+        <p>@p.NombreProducto</p>
+        <p>@p.Descripcion</p>
+        <p>@p.Precio</p>
+        @if (p.Imagenes.Count > 0)
+        {
+           foreach(var i in p.Imagenes) {
+                <div>
+                <img src="~/ImagenesProductos/@i.ImagePath" />
+                    </div>}
+        }
+    </div>
+   
+}
 

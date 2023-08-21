@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcVentas.Data;
 using VentaDeProductos.Models;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace VentaDeProductos.Controllers
 {
     public class ProductoController : Controller
     {
         private readonly MvcVentasContext _context;
+        private IWebHostEnvironment _WebHostEnviroment;
 
-        public ProductoController(MvcVentasContext context)
+        public ProductoController(MvcVentasContext context, IWebHostEnvironment env)
         {
             _context = context;
+            this._WebHostEnviroment = env;
         }
 
         // GET: Producto
@@ -61,9 +64,17 @@ namespace VentaDeProductos.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(Imagenes.Count > 0) {
+                if(Imagenes != null) {
 
-                    await SubirImagenes(Imagenes);
+                    producto.Imagenes = new List<ProductoImagen>();
+
+                    foreach (var i in Imagenes)
+                    {
+                        string imagePath = await SubirImagen(i);
+
+                        if (imagePath != null)
+                           producto.Imagenes.Add(new ProductoImagen { ImagePath=imagePath});
+                    }
                 }
 
 
@@ -75,10 +86,23 @@ namespace VentaDeProductos.Controllers
             return View(producto);
         }
 
-        //Accion que copia las imagenes a una carpeta y sube los paths de las imagenes a la tabla ProductoImagenes
-        private async Task SubirImagenes(IFormFileCollection Imagenes) {
+        //COPIAR IMAGEN A CARPETA Y DEVOLVER SU PATH
+        private async Task<string> SubirImagen (IFormFile imagen) {
 
-            //codigo que copia las imagenes a una carpeta y luego sube los paths a la db
+            var FileDic = "ImagenesProductos";
+            string FilePath = Path.Combine(_WebHostEnviroment.WebRootPath, FileDic);
+            if (!Directory.Exists(FilePath))
+                Directory.CreateDirectory(FilePath);
+
+            var imageName = Guid.NewGuid().ToString() + "_" + imagen.FileName;
+            var filePath = Path.Combine(FilePath, imageName);
+
+            using(FileStream fs = System.IO.File.Create(filePath)) {
+               await imagen.CopyToAsync(fs);
+            }
+
+
+            return imageName;
         }
 
         // GET: Producto/Edit/5
@@ -162,9 +186,11 @@ namespace VentaDeProductos.Controllers
             {
                 return Problem("Entity set 'MvcVentasContext.Productos'  is null.");
             }
-            var producto = await _context.Productos.FindAsync(id);
+            var producto = await _context.Productos.Include(p=> p.Imagenes).FirstOrDefaultAsync(p=> p.Id == id);
             if (producto != null)
             {
+                if (producto.Imagenes != null)
+                    _context.ProductoImagenes.RemoveRange(producto.Imagenes);
                 _context.Productos.Remove(producto);
             }
             

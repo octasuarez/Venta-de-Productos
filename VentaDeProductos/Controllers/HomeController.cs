@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MvcVentas.Data;
 using VentaDeProductos.Models;
 
@@ -21,7 +22,7 @@ public class HomeController : Controller
     {
         List<Producto> productos = new List<Producto>();
 
-        productos = _context.Productos.ToList();
+        productos = _context.Productos.Include(p => p.Imagenes).ToList();
 
         return View(productos.ToList());
     }
