@@ -18,8 +18,6 @@ namespace VentaDeProductos.Models
 		[Required]
 		public string? Descripcion { get; set; }
 
-		public int? Descuento { get; set; }
-
 		public virtual ICollection<ProductoImagen>? Imagenes {get;set;}
 	}
 }
