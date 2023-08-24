@@ -10,19 +10,19 @@
 
 @foreach (Producto p in Model)
 {
-
-    <div>
-        <p>@p.NombreProducto</p>
-        <p>@p.Descripcion</p>
-        <p>@p.Precio</p>
-        @if (p.Imagenes.Count > 0)
-        {
-           foreach(var i in p.Imagenes) {
-                <div>
-                <img src="~/ImagenesProductos/@i.ImagePath" />
-                    </div>}
-        }
-    </div>
-   
+   <div class="producto-card">
+       <div class="producto-imagen">
+           @if (p.Imagenes.Count > 0)
+           {
+              <img src="~/ImagenesProductos/@p.Imagenes.ElementAt(0).ImagePath" />
+           }
+       </div>
+       <div class="producto-info">
+           <h1>@p.NombreProducto</h1>
+           <span>@p.Precio</span>
+       </div>
+       <button>Add to cart</button>
+   </div>
+  
 }
 

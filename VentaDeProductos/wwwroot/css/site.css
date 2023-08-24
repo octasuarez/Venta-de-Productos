@@ -20,3 +20,44 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.producto-card {
+    max-width: 300px;
+    margin: auto;
+    border: solid;
+    border-color: lightgrey;
+    border-width: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.producto-card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.producto-info{
+    text-align:center;
+    
+}
+
+.producto-info span {
+    color: grey;
+    font-size: 22px
+}
+
+.producto-card img {
+    width: 100%;
+    object-fit:cover;
+    
+}
+
+.producto-card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: cornflowerblue;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+}
