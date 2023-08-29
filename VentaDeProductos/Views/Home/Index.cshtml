@@ -8,21 +8,23 @@
     <p>Nuestros Productos</p>
 </div>
 
-@foreach (Producto p in Model)
-{
-   <div class="producto-card">
-       <div class="producto-imagen">
-           @if (p.Imagenes.Count > 0)
-           {
-              <img src="~/ImagenesProductos/@p.Imagenes.ElementAt(0).ImagePath" />
-           }
-       </div>
-       <div class="producto-info">
-           <h1>@p.NombreProducto</h1>
-           <span>@p.Precio</span>
-       </div>
-       <button>Add to cart</button>
-   </div>
-  
-}
+<div class="cards">
 
+    @foreach (Producto p in Model)
+    {
+        <div class="producto-card">
+            <div class="producto-imagen">
+                @if (p.Imagenes.Count > 0)
+                {
+                    <img src="~/ImagenesProductos/@p.Imagenes.ElementAt(0).ImagePath" />
+                }
+            </div>
+            <div class="producto-info">
+                <h1>@p.NombreProducto</h1>
+                <span>@p.Precio</span>
+            </div>
+            <button>Add to cart</button>
+        </div>
+
+    }
+</div>

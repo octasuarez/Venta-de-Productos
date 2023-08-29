@@ -27,6 +27,17 @@ namespace VentaDeProductos.Controllers
                           Problem("Entity set 'MvcVentasContext.Categorias'  is null.");
         }
 
+        //GET PRODUCTOS EN CATEGORIA
+        [Route("Categoria/{categoria?}")]
+        public async Task<IActionResult> GetProductosEnCategoria(string categoria) {
+
+            List<Producto> productos = await (from Producto in _context.Productos
+                                        where Producto.SubCategoria.Categoria.Nombre == categoria
+                                        orderby Producto select Producto).Include(p => p.Imagenes).ToListAsync();
+
+            return View("MostrarProductos",productos);
+        }
+
         // GET: Categoria/Details/5
         public async Task<IActionResult> Details(int? id)
         {

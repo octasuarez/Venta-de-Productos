@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Mostrar Productos";
+    @model List<Producto>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido a Tienda</h1>
+    <p>Nuestros Productos</p>
+</div>
+<div class="cards">
+
+@foreach (Producto p in Model)
+{
+    <div class="producto-card">
+        <div class="producto-imagen">
+            @if (p.Imagenes.Count > 0)
+            {
+                <img src="~/ImagenesProductos/@p.Imagenes.ElementAt(0).ImagePath" />
+            }
+        </div>
+        <div class="producto-info">
+            <h1>@p.NombreProducto</h1>
+            <span>@p.Precio</span>
+        </div>
+        <button>Add to cart</button>
+    </div>
+
+}
+</div>

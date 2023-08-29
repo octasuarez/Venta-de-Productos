@@ -24,6 +24,10 @@ public class HomeController : Controller
 
         productos = _context.Productos.Include(p => p.Imagenes).ToList();
 
+        List<Categoria> categorias = _context.Categorias.Include(c => c.SubCategorias).ToList();
+
+        ViewBag.Categorias = categorias;
+
         return View(productos.ToList());
     }
 

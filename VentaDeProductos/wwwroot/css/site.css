@@ -21,7 +21,14 @@ body {
   margin-bottom: 60px;
 }
 
+.cards{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+
 .producto-card {
+    flex: 0 1 24%;
     max-width: 300px;
     margin: auto;
     border: solid;
@@ -38,7 +45,6 @@ body {
 
 .producto-info{
     text-align:center;
-    
 }
 
 .producto-info span {
