@@ -26,8 +26,6 @@ public class HomeController : Controller
 
         List<Categoria> categorias = _context.Categorias.Include(c => c.SubCategorias).ToList();
 
-        ViewBag.Categorias = categorias;
-
         return View(productos.ToList());
     }
 

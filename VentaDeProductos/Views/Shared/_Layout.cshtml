@@ -1,7 +1,4 @@
-﻿@{
-var categorias = ViewBag.Categorias as ICollection<Categoria>;
-}
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,15 +26,9 @@ var categorias = ViewBag.Categorias as ICollection<Categoria>;
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @*<li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toogle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Menu
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarMenu">
-                                @foreach( var c in categorias) {
-                                <li><a class="dropdown-item">@c.Nombre</a></li>
-                                }
-                            </ul>
-                        </li>*@
+                        @await Component.InvokeAsync("Menu") 
+
+
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Categoria>
+
+
+<li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toogle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Menu
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarMenu">
+            @foreach( var c in Model) {
+            <li><a class="dropdown-item">@c.Nombre</a></li>
+            }
+        </ul>
+</li>

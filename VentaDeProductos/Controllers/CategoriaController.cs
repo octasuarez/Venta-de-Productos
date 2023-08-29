@@ -38,6 +38,12 @@ namespace VentaDeProductos.Controllers
             return View("MostrarProductos",productos);
         }
 
+        //GET ALL CATEGORIAS
+        public async Task<List<Categoria>> GetCategorias() {
+
+            return await _context.Categorias.Include(c => c.SubCategorias).ToListAsync();
+        }
+
         // GET: Categoria/Details/5
         public async Task<IActionResult> Details(int? id)
         {
