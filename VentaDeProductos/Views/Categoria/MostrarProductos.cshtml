@@ -13,7 +13,7 @@
 {
     <div class="producto-card">
         <div class="producto-imagen">
-            @if (p.Imagenes.Count > 0)
+            @if (p.Imagenes != null)
             {
                 <img src="~/ImagenesProductos/@p.Imagenes.ElementAt(0).ImagePath" />
             }

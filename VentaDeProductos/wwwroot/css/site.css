@@ -69,3 +69,16 @@ body {
     width: 100%;
     font-size: 18px;
 }
+
+
+#nav li ul {
+    display: none;
+    position: absolute;
+    margin-left: 155px;
+    margin-top: -35px
+}
+
+
+#nav li:hover ul{
+    display:block;
+}
