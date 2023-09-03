@@ -12,9 +12,13 @@
 
     @foreach (Producto p in Model)
     {
+
         <div class="producto-card">
+            <a href="@Url.Action("Detalles", "Producto", new { id = p.Id })">
+
+
             <div class="producto-imagen">
-                @if (p.Imagenes.Count > 0)
+                @if (p.Imagenes != null)
                 {
                     <img src="~/ImagenesProductos/@p.Imagenes.ElementAt(0).ImagePath" />
                 }
@@ -23,6 +27,7 @@
                 <h1>@p.NombreProducto</h1>
                 <span>@p.Precio</span>
             </div>
+            </a>
             <button>Add to cart</button>
         </div>
 

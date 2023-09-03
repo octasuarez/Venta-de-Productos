@@ -29,6 +29,18 @@ namespace VentaDeProductos.Controllers
             return View(await mvcVentasContext.ToListAsync());
         }
 
+        
+        public async Task<IActionResult> Detalles(int? id) {
+
+            if(id == null || _context.Productos == null) {
+                return NotFound();
+            }
+
+            var producto = await _context.Productos.Include(p => p.SubCategoria).Include(p=> p.Imagenes).FirstOrDefaultAsync(p => p.Id == id);
+
+            return View(producto);
+        }
+
         // GET: Producto/Details/5
         public async Task<IActionResult> Details(int? id)
         {

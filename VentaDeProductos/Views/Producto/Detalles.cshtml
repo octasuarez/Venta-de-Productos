@@ -1,0 +1,25 @@
+﻿@model VentaDeProductos.Models.Producto
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+
+<div>
+    <div>
+        @if(Model.Imagenes != null) {
+        <img src="~/ImagenesProductos/@Model.Imagenes.ElementAt(0).ImagePath" />
+         }
+    </div>
+
+    <div>
+        <h1>@Model.NombreProducto</h1>
+        <p>@Model.Descripcion</p>
+        <br />
+        <p>$@Model.Precio</p>
+        <br />
+        <button>Agregar al Carrito</button>
+    </div>
+
+
+</div>

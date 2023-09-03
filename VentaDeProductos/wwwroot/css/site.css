@@ -59,6 +59,11 @@ body {
     
 }
 
+.producto-card a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
 .producto-card button {
     border: none;
     outline: 0;
