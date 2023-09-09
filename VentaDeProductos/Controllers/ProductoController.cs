@@ -214,5 +214,28 @@ namespace VentaDeProductos.Controllers
         {
           return (_context.Productos?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        public async Task<IActionResult> Buscar(string? busqueda) {
+
+            if (busqueda == null || busqueda == "")
+            {
+                return Problem("No se encontró ningun producto con ese nombre");
+            }
+
+            return View(await _context.Productos.Where(p => p.NombreProducto.Contains(busqueda)).ToListAsync());
+
+        }
+
+        [HttpPost]
+        public JsonResult Autocomplete(string Prefix) {
+
+            var productos = _context.Productos.Where(p => p.NombreProducto.StartsWith(Prefix)).Select(p => new Producto
+            {
+                Id = p.Id,
+                NombreProducto = p.NombreProducto,
+            }).ToList();
+
+            return Json(productos);
+        }
     }
 }

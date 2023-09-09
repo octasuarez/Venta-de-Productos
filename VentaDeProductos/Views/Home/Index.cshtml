@@ -3,6 +3,7 @@
     @model List<Producto>
 }
 
+
 <div class="text-center">
     <h1 class="display-4">Bienvenido a Tienda</h1>
     <p>Nuestros Productos</p>
@@ -17,16 +18,16 @@
             <a href="@Url.Action("Detalles", "Producto", new { id = p.Id })">
 
 
-            <div class="producto-imagen">
-                @if (p.Imagenes != null)
-                {
-                    <img src="~/ImagenesProductos/@p.Imagenes.ElementAt(0).ImagePath" />
-                }
-            </div>
-            <div class="producto-info">
-                <h1>@p.NombreProducto</h1>
-                <span>@p.Precio</span>
-            </div>
+                <div class="producto-imagen">
+                    @if (p.Imagenes != null)
+                    {
+                        <img src="~/ImagenesProductos/@p.Imagenes.ElementAt(0).ImagePath" />
+                    }
+                </div>
+                <div class="producto-info">
+                    <h1>@p.NombreProducto</h1>
+                    <span>@p.Precio</span>
+                </div>
             </a>
             <button>Add to cart</button>
         </div>

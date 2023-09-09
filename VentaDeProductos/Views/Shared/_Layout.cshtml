@@ -20,9 +20,9 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        @await Component.InvokeAsync("Menu") 
+                        @await Component.InvokeAsync("Menu")
                     </ul>
-                    <input id="searchBar" type="text" placeholder="Que producto estas buscando?" data- autocomplete="off" />
+                    <input type="text" id="txtSearch" name="txtSearch" placeholder="Que producto anda buscando?"/>
                     <button>Buscar</button>
                 </div>
             </div>
@@ -36,13 +36,44 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Tienda Inglesa - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - Tienda - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @*scripts para el autocomplete*@
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script type="text/javascript">$(document).ready(function () {
+            $("#txtSearch").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Producto/Autocomplete",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+
+                            //alert(JSON.stringify(data));
+                            response($.map(data, function (item) {
+                                return { label: item.nombreProducto, value: item.nombreProducto };
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "", results: ""
+                }
+            });
+        })</script>
+
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
 
