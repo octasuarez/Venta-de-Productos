@@ -152,3 +152,18 @@ body {
 #detalles button:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
+
+#searchBar {
+    position: absolute;
+    top: 10px;
+    display: block;
+    background-color: #f8f8f8;
+    border-style: none;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+    border-bottom-right-radius: 28px;
+    border-bottom-left-radius: 28px;
+    height: 40px;
+    width:500px;
+    margin-left:500px;
+}
