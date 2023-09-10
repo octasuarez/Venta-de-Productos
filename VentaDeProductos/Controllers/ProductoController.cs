@@ -222,7 +222,7 @@ namespace VentaDeProductos.Controllers
                 return Problem("No se encontró ningun producto con ese nombre");
             }
 
-            return View(await _context.Productos.Where(p => p.NombreProducto.Contains(busqueda)).ToListAsync());
+            return View("../Home/Index",await _context.Productos.Where(p => p.NombreProducto.Contains(busqueda)).Include(p => p.Imagenes).ToListAsync());
 
         }
 

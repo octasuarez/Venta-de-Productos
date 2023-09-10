@@ -22,8 +22,10 @@
                     <ul class="navbar-nav flex-grow-1">
                         @await Component.InvokeAsync("Menu")
                     </ul>
-                    <input type="text" id="txtSearch" name="txtSearch" placeholder="Que producto anda buscando?"/>
-                    <button>Buscar</button>
+                    <form asp-controller="Producto" asp-action="Buscar">
+                        <input type="text" id="txtSearch" name="busqueda" placeholder="Que producto anda buscando?" />
+                        <input type="submit" value="Buscar" />
+                    </form>
                 </div>
             </div>
         </nav>
