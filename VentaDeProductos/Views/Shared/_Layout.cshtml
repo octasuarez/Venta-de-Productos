@@ -8,27 +8,54 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/VentaDeProductos.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Tienda Inglesa</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+    <header class="sticky-top">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom box-shadow mb-3 py-3">
+            <div class="container-fluid col-8">
+                <a class="navbar-brand text-nowrap" href="#">Tienda</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Nosotros</a>
+                        </li>
                         @await Component.InvokeAsync("Menu")
-                    </ul>
-                    <form asp-controller="Producto" asp-action="Buscar">
-                        <input type="text" id="txtSearch" name="busqueda" placeholder="Que producto anda buscando?" />
-                        <input type="submit" value="Buscar" />
+                    </ul>                                      
+                </div>
+
+                <div class="container">
+
+                    <form class="d-flex ms-5" asp-controller="Producto" asp-action="Buscar">
+                        <input id="txtSearch" name="busqueda" class="form-control me-2" type="search" placeholder="Que producto anda buscando?" aria-label="Search">
+                        <button class="btn" type="submit"><i class="bi bi-search"></i></button>
                     </form>
                 </div>
+
+                <div class="container">
+                    <ul class="navbar-nav justify-content-end ">
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 text-uppercase" href="#"><i class="bi bi-cart"></i> Carrito</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 text-uppercase" href="#"><i class="bi bi-person-circle"></i> Cuenta</a>
+                        </li>
+                        </ul>
+                </div>
+
             </div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
