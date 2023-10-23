@@ -4,33 +4,36 @@
 }
 
 
-<div class="text-center">
-    <h1 class="display-4">Bienvenido a Tienda</h1>
-    <p>Nuestros Productos</p>
-</div>
 
-<div class="cards">
+<div class="container-fluid d-flex justify-content-center">
+    <div class="row mt-5">
 
     @foreach (Producto p in Model)
     {
-
-        <div class="producto-card">
-            <a href="@Url.Action("Detalles", "Producto", new { id = p.Id })">
+        <div class="col-sm-3 col-md-3 col-lg-3">
 
 
-                <div class="producto-imagen">
-                    @if (p.Imagenes != null)
-                    {
-                        <img src="~/ImagenesProductos/@p.Imagenes.ElementAt(0).ImagePath" />
-                    }
+            <div class="producto-card">
+                <a href="@Url.Action("Detalles", "Producto", new { id = p.Id })">
+
+
+                    <div class="producto-imagen">
+                        @if (p.Imagenes != null)
+                        {
+                            <img src="~/ImagenesProductos/@p.Imagenes.ElementAt(0).ImagePath" />
+                        }
+                    </div>
+                    <div class="producto-info">
+                        <h1>@p.NombreProducto</h1>
+                        <span>$@p.Precio</span>
+                    </div>
+                </a>
+                <div class="d-flex justify-content-center">
+                <button>Agregar al Carrito</button>
+
                 </div>
-                <div class="producto-info">
-                    <h1>@p.NombreProducto</h1>
-                    <span>$@p.Precio</span>
-                </div>
-            </a>
-            <button>Agregar al Carrito</button>
+            </div>
         </div>
-
     }
+    </div>
 </div>

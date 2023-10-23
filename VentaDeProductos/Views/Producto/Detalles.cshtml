@@ -5,31 +5,38 @@
 }
 
 
-<div id="detalles">
-    <div id="detalles-img">
-        @if(Model.Imagenes != null) {
-        <img src="~/ImagenesProductos/@Model.Imagenes.ElementAt(0).ImagePath" />
+<div class="container">
+    <div class="card">
+        <div class="container-fluid" id="detalles">
+                <div  id="detalles-img">
+                    @if (Model.Imagenes != null)
+                    {
+                        <img src="~/ImagenesProductos/@Model.Imagenes.ElementAt(0).ImagePath" />
 
-        <div id="pre-img">
-            @for (int i = 1; i < Model.Imagenes.Count; i++)
-            {
-                <img src="~/ImagenesProductos/@Model.Imagenes.ElementAt(i).ImagePath" />
-            }
+                        <div id="pre-img">
+                            @for (int i = 1; i < Model.Imagenes.Count; i++)
+                            {
+                                <img src="~/ImagenesProductos/@Model.Imagenes.ElementAt(i).ImagePath" />
+                            }
+                        </div>
+                    }
+                </div>
+
+                <div  id="detalles-info">
+                    <h1>@Model.NombreProducto</h1>
+                    <p>@Model.Descripcion</p>
+                    <br />
+                    <p>$@Model.Precio</p>
+                    <br />
+                    <div>
+
+                        <button>Agregar al Carrito</button>
+                    </div>
+                </div>
         </div>
-         }
     </div>
-
-    <div id="detalles-info">
-        <h1>@Model.NombreProducto</h1>
-        <p>@Model.Descripcion</p>
-        <br />
-        <p>$@Model.Precio</p>
-        <br />
-        <div>
-
-        <button>Agregar al Carrito</button>
-        </div>
-    </div>
+   
 
 
 </div>
+
